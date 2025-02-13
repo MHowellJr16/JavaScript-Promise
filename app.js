@@ -2,7 +2,7 @@
  * PROMISE: Something that gives you VALUE some time in the FUTURE
  */
 const statusRef = document.querySelector('.status')
-const videoRef = document.querySelector()
+const videoRef = document.querySelector('.video')
 console.log(fetch("https://jsonplaceholder.typicode.com/users/1"))
 // 2 ways to use FETCH
 const emailRef = (document.querySelector('.email'))
@@ -37,7 +37,7 @@ main()
 // Creating NEW PROMISE
 function getSubsriptionStatus() { 
     return new Promise((resolve, reject) => {
-        resolve("VIP")
+        resolve("FREE")
     })
 }
 // METHOD 1: Then
@@ -63,9 +63,24 @@ function getVideo(subscriptionStatus) {
         }
     })
 }
+// Normal Way for VIDEO
+/** 
 async function main() {
     const status = (await getSubsriptionStatus()) 
     statusRef.innerHTML = status
     console.log(await getVideo(status))
+}
+*/
+// TRY METHOD: To Display on WEBSITE
+async function main() {
+    const status = (await getSubsriptionStatus()) 
+    statusRef.innerHTML = status
+    try {
+        console.log(await getVideo(status))
+    }
+    catch (e) {
+        console.log(e)
+        videoRef.innerHTML = e
+    }    
 }
 main()
